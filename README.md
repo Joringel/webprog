@@ -66,19 +66,19 @@ Zunächst muss eine aktuelle Version von Node.js auf dem Rechner installiert wer
 
 nach Installation kann die aktuell installierte Version mit folgendem Befehl angezeigt werden:
 ```
-node -v
+$ node -v
 ```
 
 * Node.js - Version: **8.5.0** für die Entwicklung verwendet. Sollte eine andere Node-Version zu Problemen führen, kann mithilfe des NVM (Node Version Manager/ [Download](https://github.com/creationix/nvm)) explizit die für die Entwicklung verwendete Version installiert werden.
 ```
 // Download and  install a <version>
-nvm install <version>
+$ nvm install <version>
 ```
 Weitere Infos siehe: [StackOverflow](https://stackoverflow.com/questions/7718313/how-to-change-to-an-older-version-of-node-js)
 
 * npm - Version: **5.4.2** für die Entwicklung verwendet. Sollte eine andere npm-Version zu Problemen führen, kann die zur Entwicklung verwendete Version über den folgenden Befehl installiert werden:
 ```
-npm install npm@<version> -g
+$ npm install npm@<version> -g
 ```
 Weitere Infos siehe: [npmjs.org](https://www.npmjs.com/get-npm)
 
@@ -87,7 +87,7 @@ Weitere Infos siehe: [npmjs.org](https://www.npmjs.com/get-npm)
 Das Repository kann auf dem üblichen Weg lokal heruntergeladen werden. Das Programm wird mit dem folgenden Befehl mit all seinen Dependencies installiert:
 
 ```
-npm start
+$ npm start
 ```
 
 
@@ -119,8 +119,12 @@ Give an example
 * [MongoDB](https://www.mongodb.com/de)
 
 ### Node Modules
-* [Express](https://expressjs.com/de/)
-* [Nodemon](https://nodemon.io/)
+* [Express](https://expressjs.com/de/) // lightweight layer on top of node.js to build faster web-server
+* [Nodemon](https://nodemon.io/) // Monitors the Code and restarts the server every time there has been made changes to the code.
+```
+// mainly for dev. instead of $ node server.js
+$ nodemon server.js
+```
 
 
 ## Autor

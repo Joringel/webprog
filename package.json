@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Joringel/webprog#readme",
   "dependencies": {
-    "express": "^4.15.5"
+    "express": "^4.15.5",
+    "nodemon": "^1.12.1",
+    "npm": "5.4.2"
   }
 }

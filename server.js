@@ -11,5 +11,6 @@ var server = app.listen(3000);
 function listening(){
   console.log("listening. . .");
 }
+
 // use express to host static file in 'public' folder (default starts index.html file)
 app.use(express.static('public'));
