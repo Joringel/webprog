@@ -6,7 +6,7 @@ Diese Repository beinhaltet das benötigte Programm um die Aufgabenstellung des 
 Erstellung einer Projekt-Datenbank-Server-Applikation.
 ### Datenbank Schemata:
 Das Programm enthält die folgenden Tabellen.
-#### Mitarbeiter
+##### Mitarbeiter
 * Pindex (PK)
 * Mitarbeiternummer
 * Nachname
@@ -18,17 +18,17 @@ Das Programm enthält die folgenden Tabellen.
 * Passwort (im Klartext)
 * Abteilungsnummer (FK)
 
-#### Abteilungen
+##### Abteilungen
 * Pindex (PK)
 * Abteilungsnummer
 * Name
 
-#### Projekte
+##### Projekte
 * Pindex (PK)
 * Projektnummer
 * Text
 
-#### Projekt-Mitarbeiter
+##### Projekt-Mitarbeiter
 * Pindex(PK)
 * Mindex (FK)
 * Prjindex (FK)
@@ -53,7 +53,7 @@ Anmeldung erfolgt über Benutzername und Passwort für die User: *Admin*  und *N
 ##### Nach erfolgreicher Anmeldung:
 * Benutzername ändern
 * Passwort ändern
-* Tabelle mit den Projekten - Projektauswählen: den Text ändern
+* Tabelle mit den Projekten - Projektauswählen: *den Text ändern*
 
 
 ## Einführung
