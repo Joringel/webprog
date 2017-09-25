@@ -2,59 +2,104 @@
 
 Diese Repository beinhaltet das benötigte Programm um die Aufgabenstellung des Fachs: "Webprogrammierung I" zu erfüllen.
 
-## Getting Started
+## Aufgabenstellung
+Erstellung einer Projekt-Datenbank-Server-Applikation.
+### Datenbank Schemata:
+Das Programm enthält die folgenden Tabellen.
+#### Mitarbeiter
+* Pindex (PK)
+* Mitarbeiternummer
+* Nachname
+* Vorname
+* Postleitzahl
+* Ort
+* Straße / Hausnummer
+* Benutzername
+* Passwort (im Klartext)
+* Abteilungsnummer (FK)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+#### Abteilungen
+* Pindex (PK)
+* Abteilungsnummer
+* Name
 
-### Prerequisites
+#### Projekte
+* Pindex (PK)
+* Projektnummer
+* Text
 
-What things you need to install the software and how to install them
+#### Projekt-Mitarbeiter
+* Pindex(PK)
+* Mindex (FK)
+* Prjindex (FK)
+
+### Servertechnologie
+Als Servertechnologie wird Node.js verwendet.
+
+### Aufbau der Benutzeroberfläche
+Anmeldung erfolgt über Benutzername und Passwort für die User: *Admin*  und *Normaler Benutzer*
+
+#### Admin
+##### Bei Anmeldung:
+* Kann Benutzer anlegen und löschen
+* Kann Passwort neu setzen
+##### Nach erfolgreicher Anmeldung:
+* Tabelle der Benutzer: *löschen* oder *Passwort ändern*
+
+#### Normaler Benutzer
+##### Bei Anmeldung:
+* Kann Passwort neu setzen
+* Kann Benutzername neu setzen
+##### Nach erfolgreicher Anmeldung:
+* Benutzername ändern
+* Passwort ändern
+* Tabelle mit den Projekten - Projektauswählen: den Text ändern
+
+
+## Einführung
+
+Dieses Programm stellt einen rudimentären Node-Server mit MongoDB Anbindung dar.
+
+### Voraussetzungen
+
+Zunächst muss eine aktuelle Version von Node.js auf dem Rechner installiert werden. Herunterzuladen unter [Nodejs.org](https://nodejs.org/en/)
+
+nach Installation kann die aktuell installierte Version mit folgendem Befehl angezeigt werden:
+```
+node -v
+```
+
+### Installation
+
+Das Repository kann auf dem üblichen Weg lokal heruntergeladen werden. Programm wird mit dem folgenden Befehl mit all seinen Dependencies installiert:
 
 ```
-Give examples
+npm start
 ```
 
-### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+## Tests
 
 ```
 Give an example
 ```
 
-### And coding style tests
+## Weiterführende Dokumentation
 
-Explain what these tests test and why
+### Software-Architektur
+* Bild und Beschreibung
 
-```
-Give an example
-```
+### Klassen-Dokumentation
+* lorem
 
-## Deployment
+### Datenbank-ER-Modell
+* lorem
 
-Add additional notes about how to deploy this on a live system
+### Design-Entscheidungen
+* lorem
+
+### Anleitung zum Deployment
+* lorem
 
 ## Verwendete Software und Modules
 * [Node.js](https://nodejs.org/en/)
@@ -76,6 +121,6 @@ Add additional notes about how to deploy this on a live system
 
 Dieses Projekt wird unter der MIT-Lizenz lizenziert. Details unter: [LICENCE.md](LICENCE.md)
 
-## Acknowledgments
+## Anerkennung
 
 * Daniel Shiffman - The Coding Train: [Building an API with Node.js](https://www.youtube.com/watch?v=P-Upi9TMrBk&list=PLRqwX-V7Uu6Yyn-fBtGHfN0_xCtBwUkBp)
