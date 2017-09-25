@@ -12,6 +12,8 @@ console.log(words);
 
 // import module express
 var express = require ('express');
+// adding the body-parser module
+var bodyParser = require('body-parser');
 // execute express to initiate web app. (express package is a reference to a function.)
 var app = express();
 // listen for incoming connections on port: 3000
@@ -24,6 +26,11 @@ var server = app.listen(3000);
 
 // use express to host static file in 'public' folder (default starts index.html file)
 app.use(express.static('public'));
+
+// parse application/x-www-form-urlencoded from body-parser-module
+app.use(bodyParser.urlencoded({extended: false}))
+// parse application/json from body-parser-module
+app.use(bodyParser.json())
 
 // get request of route /flower respond with callback function sendFlower()
 app.get('/flower', sendFlower );
@@ -101,7 +108,8 @@ function searchWord(request, response){
 // post request to give away and save it on the server, like typing password and username(scurity matter for hidden data. also image and sound and ohter large data cant be send via a get request) get request to get information back like a search request.
 app.post('/analyze', analyzeThis);
 function analyzeThis(request, response){
-  console.log(request);
+  // with ''.body' the body will be excluded via the body-parser-module
+  console.log(request.body);
   var reply = {
     msg: 'thank you.'
   }

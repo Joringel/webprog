@@ -119,12 +119,19 @@ Give an example
 * [MongoDB](https://www.mongodb.com/de)
 
 ### Node Modules
+Alle hier aufgelisteten Module sind in der *package.json* aufgelistet und werden bei der initialen Installation mit installiert.
 * [Express](https://expressjs.com/de/) // lightweight layer on top of node.js to build faster web-server
+```
+$ npm install express
+```
 * [Nodemon](https://nodemon.io/) // Monitors the Code and restarts the server every time there has been made changes to the code.
-* [Body-Parser](https://www.npmjs.com/package/body-parser) // To not get all the data of the body when making a post-request this module helps to parse the request and it will not be shown.
 ```
 // mainly for dev. instead of $ node server.js
 $ nodemon server.js
+```
+* [Body-Parser](https://github.com/expressjs/body-parser) // To not get all the data of the body when making a post-request this module helps to parse the request and it will not be shown.
+```
+$ npm install body-parser
 ```
 
 

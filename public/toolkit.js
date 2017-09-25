@@ -34,7 +34,7 @@ function analyzeThis(){
     text: txt
   }
   // post request via the httpPost Function in p5js. it needs to send a whole object.
-  httpPost('analyze/', 'json', dataPosted, postErr);
+  httpPost('analyze/', data, 'json', dataPosted, postErr);
 }
 
 function dataPosted(result) {
