@@ -68,19 +68,23 @@ nach Installation kann die aktuell installierte Version mit folgendem Befehl ang
 ```
 node -v
 ```
-Version: **8.5.0** für die Entwicklung verwendet.
 
-* Sollte eine andere Node-Version zu Problemen, führen kann mithilfe des NVM (Node Version Manager/ [Download](https://github.com/creationix/nvm)) explizit die für die Entwicklung verwendete Version installiert werden.
+* Node.js - Version: **8.5.0** für die Entwicklung verwendet. Sollte eine andere Node-Version zu Problemen führen, kann mithilfe des NVM (Node Version Manager/ [Download](https://github.com/creationix/nvm)) explizit die für die Entwicklung verwendete Version installiert werden.
 ```
 // Download and  install a <version>
 nvm install <version>
 ```
-Weiteres hierzu siehe: [StackOverflow](https://stackoverflow.com/questions/7718313/how-to-change-to-an-older-version-of-node-js)
+Weitere Infos siehe: [StackOverflow](https://stackoverflow.com/questions/7718313/how-to-change-to-an-older-version-of-node-js)
 
+* npm - Version: **5.4.2** für die Entwicklung verwendet. Sollte eine andere npm-Version zu Problemen führen, kann die zur Entwicklung verwendete Version über den folgenden Befehl installiert werden:
+```
+npm install npm@<version> -g
+```
+Weitere Infos siehe: [npmjs.org](https://www.npmjs.com/get-npm)
 
 ### Installation
 
-Das Repository kann auf dem üblichen Weg lokal heruntergeladen werden. Programm wird mit dem folgenden Befehl mit all seinen Dependencies installiert:
+Das Repository kann auf dem üblichen Weg lokal heruntergeladen werden. Das Programm wird mit dem folgenden Befehl mit all seinen Dependencies installiert:
 
 ```
 npm start
