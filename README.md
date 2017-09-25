@@ -39,14 +39,14 @@ Als Servertechnologie wird Node.js verwendet.
 ### Aufbau der Benutzeroberfläche
 Anmeldung erfolgt über Benutzername und Passwort für die User: *Admin*  und *Normaler Benutzer*
 
-#### Admin
+#### **Admin**
 ##### Bei Anmeldung:
 * Kann Benutzer anlegen und löschen
 * Kann Passwort neu setzen
 ##### Nach erfolgreicher Anmeldung:
 * Tabelle der Benutzer: *löschen* oder *Passwort ändern*
 
-#### Normaler Benutzer
+#### **Normaler Benutzer**
 ##### Bei Anmeldung:
 * Kann Passwort neu setzen
 * Kann Benutzername neu setzen
@@ -115,6 +115,11 @@ Give an example
 * **Name: Johannes Koch**
 * **Matr.Nr: 22571**
 * **Mail: u30394@hs-harz.de**
+
+## Dozent
+
+* **Name: Michael Wilhelm**
+* **Mail: mwilhelm@hs-harz.de**
 
 
 ## Lizenz
