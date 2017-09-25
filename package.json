@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Joringel/webprog#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.15.5",
     "nodemon": "^1.12.1",
     "npm": "5.4.2"

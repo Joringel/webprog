@@ -7,7 +7,6 @@ var data = fs.readFileSync('words.json');
 // parsing the data into readable JSON notation
 var words = JSON.parse(data);
 
-
 console.log(words);
 //console.log("server is starting");
 
@@ -36,6 +35,7 @@ function sendFlower(request, response){
 
 // ADD ROUTE
 // route add followed by User Input
+// this should actually be a post request. because something will be saved on the server
 app.get('/add/:word/:score?', addWord);
 
 function addWord(request, response){
@@ -96,4 +96,14 @@ function searchWord(request, response){
     }
   }
   response.send(reply);
+}
+
+// post request to give away and save it on the server, like typing password and username(scurity matter for hidden data. also image and sound and ohter large data cant be send via a get request) get request to get information back like a search request.
+app.post('/analyze', analyzeThis);
+function analyzeThis(request, response){
+  console.log(request);
+  var reply = {
+    msg: 'thank you.'
+  }
+    response.send(reply);
 }
