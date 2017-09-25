@@ -1,0 +1,23 @@
+{
+  "name": "webprog",
+  "version": "1.0.0",
+  "description": "Node.js Server with MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Joringel@github.com/Joringel/webprog.git"
+  },
+  "author": "Johannes Koch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joringel/webprog/issues"
+  },
+  "homepage": "https://github.com/Joringel/webprog#readme",
+  "dependencies": {
+    "express": "^4.15.5"
+  }
+}
