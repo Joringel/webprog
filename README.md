@@ -68,6 +68,15 @@ nach Installation kann die aktuell installierte Version mit folgendem Befehl ang
 ```
 node -v
 ```
+Version: **8.5.0** für die Entwicklung verwendet.
+
+* Sollte eine andere Node-Version zu Problemen, führen kann mithilfe des NVM (Node Version Manager/ [Download](https://github.com/creationix/nvm)) explizit die für die Entwicklung verwendete Version installiert werden.
+```
+// Download and  install a <version>
+nvm install <version>
+```
+Weiteres hierzu siehe: [StackOverflow](https://stackoverflow.com/questions/7718313/how-to-change-to-an-older-version-of-node-js)
+
 
 ### Installation
 
