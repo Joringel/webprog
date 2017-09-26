@@ -87,6 +87,7 @@ Weitere Infos siehe: [npmjs.org](https://www.npmjs.com/get-npm)
 #### MongoDB
 Als Datenbank wird die dokumentenorientierte noSQL Datenbank *MongoDB* genutzt. ([Download](https://www.mongodb.com/download-center#community))
 Der heruntergeladene Ordner muss entpackt werden und sollte durch den Namen *"mongodb"* ersetzt werden.
+Für weiterführende Installationshinweise siehe [MongoDB.com/manual](https://docs.mongodb.com/manual/administration/install-community/).
 
 ##### **MongoDB auf Mac**
 Um direkt die Datenbank zu starten begibt man sich in den Ordner *mongodb/bin*  und führt die *mongod* Datei aus um den Datenbank-Server zu starten.
@@ -132,10 +133,10 @@ $ npm start
 
 
 ## Tests
+Die REST-API wurde mithilfe des Tools *Postman* getestet. ([Download](https://www.getpostman.com/))
 
-```
-Give an example
-```
+Ausgabe aller Einträge in der DB:
+![Postman get all DB Entries](/doc/images/postman__01.png)
 
 ## Weiterführende Dokumentation
 
