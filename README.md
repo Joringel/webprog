@@ -8,7 +8,7 @@ Erstellung einer Projekt-Datenbank-Server-Applikation.
 
 | Mitarbeiter            | Abteilungen      | Projekte      | Projekt-Mitarbeiter |
 |------------------------|------------------|---------------|---------------------|
-| Pindex (PK)            | Pindex(PK)       | Pindex(PK)    | Pindex(PK)          |
+| Pindex (PK)            | Pindex (PK)      | Pindex (PK)   | Pindex (PK)         |
 | Mitarbeiternummer      | Abteilungsnummer | Projektnummer | Mindex (FK)         |
 | Nachname               | Name             | Text          | Prjindex (FK)       |
 | Vorname                |                  |               |                     |
@@ -160,7 +160,10 @@ $ nodemon server.js
 ```
 $ npm install body-parser
 ```
-
+* [Mongoose](http://mongoosejs.com/) // elegant mongodb object modeling for node.js
+```
+$ npm install mongoose
+```
 
 ## Autor
 
@@ -181,3 +184,4 @@ Dieses Projekt wird unter der MIT-Lizenz lizenziert. Details unter: [LICENCE.md]
 ## Anerkennung
 
 * Daniel Shiffman - The Coding Train: [Building an API with Node.js](https://www.youtube.com/watch?v=P-Upi9TMrBk&list=PLRqwX-V7Uu6Yyn-fBtGHfN0_xCtBwUkBp)
+* Traversy Media: [RESTful API From Scratch](https://www.youtube.com/watch?v=eB9Fq9I5ocs)
