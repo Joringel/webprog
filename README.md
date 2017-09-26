@@ -5,33 +5,19 @@ Diese Repository beinhaltet das benötigte Programm um die Aufgabenstellung des 
 ## Aufgabenstellung
 Erstellung einer Projekt-Datenbank-Server-Applikation.
 ### Datenbank Schemata:
-Das Programm enthält die folgenden Tabellen.
-##### Mitarbeiter
-* Pindex (PK)
-* Mitarbeiternummer
-* Nachname
-* Vorname
-* Postleitzahl
-* Ort
-* Straße / Hausnummer
-* Benutzername
-* Passwort (im Klartext)
-* Abteilungsnummer (FK)
 
-##### Abteilungen
-* Pindex (PK)
-* Abteilungsnummer
-* Name
-
-##### Projekte
-* Pindex (PK)
-* Projektnummer
-* Text
-
-##### Projekt-Mitarbeiter
-* Pindex(PK)
-* Mindex (FK)
-* Prjindex (FK)
+| Mitarbeiter            | Abteilungen      | Projekte      | Projekt-Mitarbeiter |
+|------------------------|------------------|---------------|---------------------|
+| Pindex (PK)            | Pindex(PK)       | Pindex(PK)    | Pindex(PK)          |
+| Mitarbeiternummer      | Abteilungsnummer | Projektnummer | Mindex (FK)         |
+| Nachname               | Name             | Text          | Prjindex (FK)       |
+| Vorname                |                  |               |                     |
+| Postleitzahl           |                  |               |                     |
+| Ort                    |                  |               |                     |
+| Straße / Hausnummer    |                  |               |                     |
+| Benutzername           |                  |               |                     |
+| Passwort (im Klartext) |                  |               |                     |
+| Abteilungsnummer (FK)  |                  |               |                     |
 
 ### Servertechnologie
 Als Servertechnologie wird Node.js verwendet.
