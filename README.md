@@ -88,7 +88,7 @@ Weitere Infos siehe: [npmjs.org](https://www.npmjs.com/get-npm)
 Als Datenbank wird die dokumentenorientierte noSQL Datenbank *MongoDB* genutzt. ([Download](https://www.mongodb.com/download-center#community))
 Der heruntergeladene Ordner muss entpackt werden und sollte durch den Namen *"mongodb"* ersetzt werden.
 
-##### MongoDB auf Mac
+##### **MongoDB auf Mac**
 Um direkt die Datenbank zu starten begibt man sich in den Ordner *mongodb/bin*  und führt die *mongod* Datei aus um den Datenbank-Server zu starten.
 ```
 $ cd mongodb/bin
@@ -106,13 +106,14 @@ Die Datenbank-Dateien werden per Default im Ordner */data/db* gespeichert. Diese
 ```
 $ mkdir -p /data/db
 ```
-##### MongoDB auf Windows
-Um MongoDB auf Windows zu installieren muss die .exe-Datei ausgeführt werden. Per Default wird MongoDB auf C:"&#92;"Program"&#92;"Files"&#92;"MongoDB"&#92;"Server"&#92;"<versions-nummer>\
+---
+##### **MongoDB auf Windows**
+Um MongoDB auf Windows zu installieren muss die .exe-Datei ausgeführt werden. Per Default wird MongoDB auf C:"&#92;"Program"&#92;"Files"&#92;"MongoDB"&#92;"Server"&#92;"[versions-nummer]\ installiert.
 Das Default Data-Directory liegt in "&#92;"data"&#92;"db. Der entsprechende Ordner kann mit dem folgeden Befehl erstellt werden.
 ```
 $ md \data\db
 ```
-Im Ordner MongoDB"&#92;"Server"&#92;"<versions-nummer>"&#92;"bin muss der folgende Befehl getätigt werden um den mongoDB-Server zu starten.
+Im Ordner MongoDB"&#92;"Server"&#92;"[versions-nummer]"&#92;"bin muss der folgende Befehl getätigt werden um den mongoDB-Server zu starten.
 ```
 $ mongod.exe
 ```
@@ -120,6 +121,7 @@ Im selben Ordner kann der Client über den folgeden Befehl gestartet werden.
 ```
 $ mongo.exe
 ```
+---
 ### Installation der Applikation
 
 Das Repository kann auf dem üblichen Weg lokal heruntergeladen werden. Das Programm wird mit dem folgenden Befehl mit all seinen Dependencies installiert:
