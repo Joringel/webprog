@@ -1,146 +1,141 @@
 
-// file system package thats build into node
-var fs = require('fs');
-// requesting the words.json file
-var data = fs.readFileSync('words.json');
-// sync means that the next line of code will not be finished until the action before has been finished. will this is happening the server cannot work on other tasks.
-// parsing the data into readable JSON notation
-var words = JSON.parse(data);
+
+var fs = require('fs'); // import integrated node module file system package
+var data = fs.readFileSync('words.json'); // synced request 'words.json' file
+var words = JSON.parse(data); // parse data into JSON Notation
 
 console.log(words);
-//console.log("server is starting");
 
 
-// import module express
-var express = require ('express');
-// execute express to initiate web app. (express package is a reference to a function.)
-var app = express();
-// adding the body-parser module
-var bodyParser = require('body-parser');
+var express = require ('express'); // import module express module
+var app = express(); // execute express to initiate web app
 
-// middleware to initialize the body-parser, so a post request will actually not run forever
-app.use(bodyParser.json());
+var bodyParser = require('body-parser'); // adding body-parser module
+app.use(bodyParser.json()); // middleware to initialize body-parser
 
-// adding the body-parser module
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'); // adding body-parser module
 
-// include the genre Object
-Genre = require('./models/genre');
 
-// include the Book Object
-Book = require('./models/books');
+Admin = require('./models/admin'); // include Admin Model
+User = require('./models/user'); // include User Model
 
-// connect to mongoose, wich we pass the location of the databse
-mongoose.connect('mongodb://localhost/webprog');
-//database object
-var db = mongoose.connection;
-//setup route for the homepage
-app.get('/', function(req, res){
-  res.send('Please use /api/books or /api/genre');
+
+mongoose.connect('mongodb://localhost/webprog'); // connect to mongoose, with location of database
+var db = mongoose.connection; // database object
+
+app.get('/', function(req, res){ // set route for root
+  res.send('Please use /api/users or /api/admins');
 });
 
-//setup route for the genre collection
-app.get('/api/genres', function(req, res){
-  Genre.getGenres(function(err, genres){
+
+app.get('/api/admins', function(req, res){ // set route to get all Admins
+  Admin.getAdmins(function(err, admins){
     if(err){
       throw err;
     }
-    res.json(genres);
+    res.json(admins);
   });
 });
 
-//route for adding genres
-app.post('/api/genres', function(req, res){
-  // with the body-parser we can access everything that comes into the form and then save into a genre object.
-  var genre = req.body;
-  Genre.addGenre(genre, function(err, genre){
+
+app.post('/api/admins', function(req, res){ //set route to add Admin
+  var admin = req.body; // save form input with body-parser into a admin object
+  Admin.addAdmin(admin, function(err, admin){
     if(err){
       throw err;
     }
-    res.json(genre);
+    res.json(admin);
   });
 });
 
-//route for updating a genre
-app.put('/api/genres/:_id', function(req, res){
+
+app.get('/api/admins/:_id', function(req, res){ // set route to get single Admin
+  Admin.getAdminById(req.params._id, function(err, admin){
+    if(err){
+      throw err;
+    }
+    res.json(admin);
+  });
+});
+
+
+app.put('/api/admins/:_id', function(req, res){ // set route to update admin
   var id = req.params._id;
-  var genre = req.body;
+  var admin = req.body;
   // options will be left blank {}
-  Genre.updateGenre(id, genre, {}, function(err, genre){
+  Admin.updateAdmin(id, admin, {}, function(err, admin){
     if(err){
       throw err;
     }
-    res.json(genre);
+    res.json(admin);
   });
 });
 
-//route for deleting genres
-app.delete('/api/genres/:_id', function(req, res){
+
+app.delete('/api/admins/:_id', function(req, res){ // route to delete admin
   var id = req.params._id;
-  var genre = req.body;
-  Genre.removeGenre(id, function(err, genre){
+  var admin = req.body;
+  Admin.removeAdmin(id, function(err, admin){
     if(err){
       throw err;
     }
-    res.json(genre);
+    res.json(admin);
   });
 });
-
 
 /*--------------------------------------------------*/
 
-//setup route for the book collection
-app.get('/api/books', function(req, res){
-  Book.getBooks(function(err, books){
+
+app.get('/api/users', function(req, res){ // set route to get all users
+  User.getUsers(function(err, users){
     if(err){
       throw err;
     }
-    res.json(books);
+    res.json(users);
   });
 });
 
-//route for adding books
-app.post('/api/books', function(req, res){
-  var book = req.body;
-  Book.addBook(book, function(err, book){
+
+app.get('/api/users/:_id', function(req, res){ // set route to get single user
+  User.getUserById(req.params._id, function(err, user){
     if(err){
       throw err;
     }
-    res.json(book);
+    res.json(user);
   });
 });
 
-//setup route for a single book
-app.get('/api/books/:_id', function(req, res){
-  Book.getBookById(req.params._id, function(err, book){
+app.post('/api/users', function(req, res){ //set route to add User
+  var user = req.body;
+  User.addUser(user, function(err, user){
     if(err){
       throw err;
     }
-    res.json(book);
+    res.json(user);
   });
 });
 
-//route for updating a book
-app.put('/api/books/:_id', function(req, res){
+
+app.put('/api/users/:_id', function(req, res){ // set route to update a user
   var id = req.params._id;
-  var book = req.body;
-  Book.updateBook(id, book, {}, function(err, book){
+  var user = req.body;
+  User.updateUser(id, user, {}, function(err, user){
     if(err){
       throw err;
     }
-    res.json(book);
+    res.json(user);
   });
 });
 
-//route for deleting books
-app.delete('/api/books/:_id', function(req, res){
+
+app.delete('/api/users/:_id', function(req, res){ // route to delete a user
   var id = req.params._id;
-  var book = req.body;
-  Book.removeBook(id, function(err, book){
+  var user = req.body;
+  User.removeUser(id, function(err, user){
     if(err){
       throw err;
     }
-    res.json(book);
+    res.json(user);
   });
 });
 
