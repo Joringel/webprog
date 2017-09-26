@@ -6,19 +6,16 @@ var words = JSON.parse(data); // parse data into JSON Notation
 
 console.log(words);
 
-
 var express = require ('express'); // import module express module
 var app = express(); // execute express to initiate web app
 
 var bodyParser = require('body-parser'); // adding body-parser module
 app.use(bodyParser.json()); // middleware to initialize body-parser
-
 var mongoose = require('mongoose'); // adding body-parser module
 
 
 Admin = require('./models/admin'); // include Admin Model
 User = require('./models/user'); // include User Model
-
 
 mongoose.connect('mongodb://localhost/webprog'); // connect to mongoose, with location of database
 var db = mongoose.connection; // database object
@@ -27,6 +24,9 @@ app.get('/', function(req, res){ // set route for root
   res.send('Please use /api/users or /api/admins');
 });
 
+/*----------------------------------------------------
+ADMIN ROUTES
+----------------------------------------------------*/
 
 app.get('/api/admins', function(req, res){ // set route to get all Admins
   Admin.getAdmins(function(err, admins){
@@ -83,7 +83,9 @@ app.delete('/api/admins/:_id', function(req, res){ // route to delete admin
   });
 });
 
-/*--------------------------------------------------*/
+/*----------------------------------------------------
+USER ROUTES
+----------------------------------------------------*/
 
 
 app.get('/api/users', function(req, res){ // set route to get all users
