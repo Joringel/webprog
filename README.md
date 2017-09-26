@@ -62,6 +62,8 @@ Dieses Programm stellt einen rudimentären Node-Server mit MongoDB Anbindung dar
 
 ### Voraussetzungen
 
+
+#### Node.js
 Zunächst muss eine aktuelle Version von Node.js auf dem Rechner installiert werden. Herunterzuladen unter [Nodejs.org](https://nodejs.org/en/)
 
 nach Installation kann die aktuell installierte Version mit folgendem Befehl angezeigt werden:
@@ -82,7 +84,29 @@ $ npm install npm@<version> -g
 ```
 Weitere Infos siehe: [npmjs.org](https://www.npmjs.com/get-npm)
 
-### Installation
+#### MongoDB
+Als Datenbank wird die dokumentenorientierte noSQL Datenbank *MongoDB* genutzt. ([Download](https://www.mongodb.com/download-center#community))
+Der heruntergeladene Ordner muss entpackt werden und sollte durch den Namen *"mongodb"* ersetzt werden.
+
+##### MongoDB auf Mac
+Um direkt die Datenbank zu starten begibt man sich in den Ordner *mongodb/bin*  und führt die *mongod* Datei aus um den Datenbank-Server zu starten.
+```
+$ cd mongodb/bin
+$ ./mongod
+```
+Um einen Client zu starten muss in einem weiteren Terminal-Fenster im selben ordner *mongodb/bin* die Datei *mongo* ausgeführt werden.
+```
+$ ./mongo
+```
+Die Ausführung der Datei kann Adminrechte benötigen. In diesem Fall kann das Problem mit dem folgenden Befehl vor dem Ausführen der *mongod*-Datei behoben werden.
+```
+$ sudo su <admin-passwort>
+```
+Die Datenbank-Dateien werden per Default im Ordner */data/db* gespeichert. Dieser kann mit folgendem Befehl erstellt werden
+```
+$ mkdir -p /data/db
+```
+### Installation der Applikation
 
 Das Repository kann auf dem üblichen Weg lokal heruntergeladen werden. Das Programm wird mit dem folgenden Befehl mit all seinen Dependencies installiert:
 
