@@ -106,6 +106,20 @@ Die Datenbank-Dateien werden per Default im Ordner */data/db* gespeichert. Diese
 ```
 $ mkdir -p /data/db
 ```
+##### MongoDB auf Windows
+Um MongoDB auf Windows zu installieren muss die .exe-Datei ausgeführt werden. Per Default wird MongoDB auf C:"&#92;"Program"&#92;"Files"&#92;"MongoDB"&#92;"Server"&#92;"<versions-nummer>\
+Das Default Data-Directory liegt in "&#92;"data"&#92;"db. Der entsprechende Ordner kann mit dem folgeden Befehl erstellt werden.
+```
+$ md \data\db
+```
+Im Ordner MongoDB"&#92;"Server"&#92;"<versions-nummer>"&#92;"bin muss der folgende Befehl getätigt werden um den mongoDB-Server zu starten.
+```
+$ mongod.exe
+```
+Im selben Ordner kann der Client über den folgeden Befehl gestartet werden.
+```
+$ mongo.exe
+```
 ### Installation der Applikation
 
 Das Repository kann auf dem üblichen Weg lokal heruntergeladen werden. Das Programm wird mit dem folgenden Befehl mit all seinen Dependencies installiert:
