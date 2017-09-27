@@ -184,7 +184,7 @@ and creates all the folders and files as default.
 
 ## Lizenz
 
-Dieses Projekt wird unter der MIT-Lizenz lizenziert. Details unter: [LICENCE.md](LICENCE.md)
+Dieses Projekt wird unter der MIT-Lizenz lizenziert. Details unter: [LICENCE.md](/doc/LICENCE.md)
 
 ## Anerkennung
 
