@@ -164,6 +164,11 @@ $ npm install body-parser
 ```
 $ npm install mongoose
 ```
+* [Express-Generator](https://expressjs.com/de/starter/generator.html) // helps to manage to structure the direcotries, folders and files. by typing
+```
+$ express
+```
+and creates all the folders and files as default.
 
 ## Autor
 
