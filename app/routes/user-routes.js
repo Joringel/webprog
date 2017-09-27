@@ -15,8 +15,6 @@ module.exports = function(app, passport){
     res.render('login.ejs', { message: req.flash('loginMessage') });
   });
 
-   // process the login form
-   // app.post('/login', do all our passport stuff here);
 
    // SIGNUP with signup form ===================================================
   app.get('/signup', function(req, res) {
@@ -24,11 +22,14 @@ module.exports = function(app, passport){
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   });
 
-   // process the signup form
-   // app.post('/signup', do all our passport stuff here);
+  // PROCESS signup form ========================================================
+      app.post('/signup', passport.authenticate('local-signup', {
+          successRedirect : '/profile', // redirect to the secure profile section
+          failureRedirect : '/signup', // redirect back to signup page if error
+          failureFlash : true // allow flash messages
+      }));
 
-
-   // PROFILE SECTION ==========================================================
+   // PROFILE SECTION ===========================================================
    // protected and only visible when logged in
    // use route middleware to verify this (isLoggedIn function)
   app.get('/profile', isLoggedIn, function(req, res) {
@@ -37,7 +38,7 @@ module.exports = function(app, passport){
     });
   });
 
-  // LOGOUT ====================================================================
+  // LOGOUT =====================================================================
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');

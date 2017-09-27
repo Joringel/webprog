@@ -21,8 +21,9 @@ var flash           = require('connect-flash');
 var path            = require('path');
 var favicon         = require('serve-favicon');
 
-// configure DB ================================================================
-configDB = require('./config/database.js');
+// configuration ===============================================================
+configDB = require('./config/database.js'); // conect to database
+require('./config/passport.js')(passport); // pass passport for config
 
 // set up Views and Templating Engine ==========================================
 // app.set('views', path.join(__dirname, 'views'));
