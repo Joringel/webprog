@@ -15,6 +15,12 @@ module.exports = function(app, passport){
     res.render('login.ejs', { message: req.flash('loginMessage') });
   });
 
+  // PROCESS login form =========================================================
+  app.post('/login', passport.authenticate('local-login', {
+      successRedirect : '/profile', // redirect to the secure profile section
+      failureRedirect : '/login', // redirect back to signup page if error
+      failureFlash : true // allow flash messages
+  }));
 
    // SIGNUP with signup form ===================================================
   app.get('/signup', function(req, res) {
@@ -53,3 +59,16 @@ function isLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/');
 }
+
+
+//   function isLoggedIn(req, res, next) {
+//     if(req.isAuthenticated())
+//       return next();
+//
+//     res.redirect('/');
+//   }
+// function isAdmin(req, res, next) {
+// app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
+
+//app/routes.js
+// var User          = require('../app/models/user');

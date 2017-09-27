@@ -35,9 +35,9 @@ app.use(favicon(path.join(__dirname, 'public', 'fav-webprog.ico')));
 
 // set up Express Application ==================================================
 app.use(morgan('dev')); // log request to console
+app.use(cookieParser()); // read cookies. required for auth
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser()); // read cookies. required for auth
 app.use(express.static(path.join(__dirname, 'public')));
 
 // requirements for passport ===================================================
