@@ -15,18 +15,19 @@ var mongoose = require('mongoose'); // adding body-parser module
 
 
 Admin = require('./models/admin'); // include Admin Model
-User = require('./models/user'); // include User Model
+NormalUser = require('./models/normalUser'); // include User Model
 
 mongoose.connect('mongodb://localhost/webprog'); // connect to mongoose, with location of database
 var db = mongoose.connection; // database object
 
 app.get('/', function(req, res){ // set route for root
-  res.send('Please use /api/users or /api/admins');
+  res.send('Please use /api/normalUsers or /api/admins');
 });
 
 /*----------------------------------------------------
 ADMIN ROUTES
 ----------------------------------------------------*/
+
 
 app.get('/api/admins', function(req, res){ // set route to get all Admins
   Admin.getAdmins(function(err, admins){
@@ -38,9 +39,8 @@ app.get('/api/admins', function(req, res){ // set route to get all Admins
 });
 
 
-app.post('/api/admins', function(req, res){ //set route to add Admin
-  var admin = req.body; // save form input with body-parser into a admin object
-  Admin.addAdmin(admin, function(err, admin){
+app.get('/api/admins/:_id', function(req, res){ // set route to get single Admin
+  Admin.getAdminById(req.params._id, function(err, admin){
     if(err){
       throw err;
     }
@@ -49,8 +49,9 @@ app.post('/api/admins', function(req, res){ //set route to add Admin
 });
 
 
-app.get('/api/admins/:_id', function(req, res){ // set route to get single Admin
-  Admin.getAdminById(req.params._id, function(err, admin){
+app.post('/api/admins', function(req, res){ //set route to add Admin
+  var admin = req.body; // save form input with body-parser into a admin object
+  Admin.addAdmin(admin, function(err, admin){
     if(err){
       throw err;
     }
@@ -83,61 +84,63 @@ app.delete('/api/admins/:_id', function(req, res){ // route to delete admin
   });
 });
 
+
 /*----------------------------------------------------
 USER ROUTES
 ----------------------------------------------------*/
 
-
-app.get('/api/users', function(req, res){ // set route to get all users
-  User.getUsers(function(err, users){
+app.get('/api/normalUsers', function(req, res){ // set route to get all NormalUsers
+  NormalUser.getNormalUsers(function(err, normalUsers){
     if(err){
       throw err;
     }
-    res.json(users);
+    res.json(normalUsers);
   });
 });
 
 
-app.get('/api/users/:_id', function(req, res){ // set route to get single user
-  User.getUserById(req.params._id, function(err, user){
+app.get('/api/normalUsers/:_id', function(req, res){ // set route to get single NormalUser
+  NormalUser.getNormalUserById(req.params._id, function(err, normalUser){
     if(err){
       throw err;
     }
-    res.json(user);
-  });
-});
-
-app.post('/api/users', function(req, res){ //set route to add User
-  var user = req.body;
-  User.addUser(user, function(err, user){
-    if(err){
-      throw err;
-    }
-    res.json(user);
+    res.json(normalUser);
   });
 });
 
 
-app.put('/api/users/:_id', function(req, res){ // set route to update a user
+app.post('/api/normalUsers', function(req, res){ //set route to add NormalUser
+  var normalUser = req.body; // save form input with body-parser into a NormalUser object
+  NormalUser.addNormalUser(normalUser, function(err, normalUser){
+    if(err){
+      throw err;
+    }
+    res.json(normalUser);
+  });
+});
+
+
+app.put('/api/normalUsers/:_id', function(req, res){ // set route to update NormalUser
   var id = req.params._id;
-  var user = req.body;
-  User.updateUser(id, user, {}, function(err, user){
+  var normalUser = req.body;
+  // options will be left blank {}
+  NormalUser.updateNormalUser(id, normalUser, {}, function(err, normalUser){
     if(err){
       throw err;
     }
-    res.json(user);
+    res.json(normalUser);
   });
 });
 
 
-app.delete('/api/users/:_id', function(req, res){ // route to delete a user
+app.delete('/api/normalUsers/:_id', function(req, res){ // route to delete normalUser
   var id = req.params._id;
-  var user = req.body;
-  User.removeUser(id, function(err, user){
+  var normalUser = req.body;
+  NormalUser.removeNormalUser(id, function(err, normalUser){
     if(err){
       throw err;
     }
-    res.json(user);
+    res.json(normalUser);
   });
 });
 
@@ -146,6 +149,9 @@ app.delete('/api/users/:_id', function(req, res){ // route to delete a user
 
 // listen for incoming connections on port: 3000
 var server = app.listen(3000);
+
+
+/*
 
 // callback function for testing purposes. (response in console)
 // function listening(){
@@ -243,3 +249,5 @@ function analyzeThis(request, response){
   }
     response.send(reply);
 }
+
+*/

@@ -1,3 +1,5 @@
+/*
+
 function setup(){
   //loads route of all an all the entries of the DB. funktioniert sowohl mit relativen als auch absoluten pfad. braucht also nicht explizit den slash.
   loadJSON('/all', gotData);
@@ -56,3 +58,5 @@ function gotData(data){
   // }
   console.log(keys);
 }
+
+*/
