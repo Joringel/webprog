@@ -35,6 +35,13 @@ module.exports = function(app, passport){
           failureFlash : true // allow flash messages
       }));
 
+    // ADMIN SECTION ===========================================================
+    app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
+      res.render('admin.pug', {
+        user: req.user
+      });
+    });
+
    // PROFILE SECTION ===========================================================
    // protected and only visible when logged in
    // use route middleware to verify this (isLoggedIn function)
@@ -60,6 +67,12 @@ function isLoggedIn(req, res, next) {
   res.redirect('/');
 }
 
+// route middleware to make sure is logged in and is an Admin
+function isAdmin(req, res, next){
+  if(req.isAuthenticated() && local.admin === true)
+  return next();
+  res.redirect('/');
+}
 
 //   function isLoggedIn(req, res, next) {
 //     if(req.isAuthenticated())
@@ -69,6 +82,3 @@ function isLoggedIn(req, res, next) {
 //   }
 // function isAdmin(req, res, next) {
 // app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
-
-//app/routes.js
-// var User          = require('../app/models/user');
