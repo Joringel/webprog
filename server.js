@@ -30,9 +30,8 @@ mongoose.connect(configDB.url, { // connect to MongoDB
 require('./config/passport.js')(passport); // pass passport for config
 
 // set up Views and Templating Engine ==========================================
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug'); // use pug as templating-engine
 
 // fav-icon ====================================================================
 app.use(favicon(path.join(__dirname, 'public', 'fav-webprog.ico')));

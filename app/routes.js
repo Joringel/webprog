@@ -6,13 +6,13 @@ module.exports = function(app, passport){
 
   // HOMEPAGE with links to login ===============================================
   app.get('/', function(req, res) {
-    res.render('index.ejs'); // load the index.ejs file
+    res.render('index.pug'); // load the index.ejs file
   });
 
   // LOGIN shows login form =====================================================
   app.get('/login', function(req, res) {
     // render page and pass in flash data if it exists
-    res.render('login.ejs', { message: req.flash('loginMessage') });
+    res.render('login.pug', { message: req.flash('loginMessage') });
   });
 
   // PROCESS login form =========================================================
@@ -25,7 +25,7 @@ module.exports = function(app, passport){
    // SIGNUP with signup form ===================================================
   app.get('/signup', function(req, res) {
     // render page and pass in flash data if it exists
-    res.render('signup.ejs', { message: req.flash('signupMessage') });
+    res.render('signup.pug', { message: req.flash('signupMessage') });
   });
 
   // PROCESS signup form ========================================================
@@ -39,7 +39,7 @@ module.exports = function(app, passport){
    // protected and only visible when logged in
    // use route middleware to verify this (isLoggedIn function)
   app.get('/profile', isLoggedIn, function(req, res) {
-    res.render('profile.ejs', {
+    res.render('profile.pug', {
       user : req.user // get the user out of session and pass to template
     });
   });
