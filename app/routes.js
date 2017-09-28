@@ -2,12 +2,15 @@
   ROUTES FOR USERS
 ------------------------------------------------------------------------------*/
 
+var User       = require('../app/models/user');
+
 module.exports = function(app, passport){
 
   // HOMEPAGE with links to login ===============================================
   app.get('/', function(req, res) {
     res.render('index.pug'); // load the index.ejs file
   });
+/*----------------------------------------------------------------------------*/
 
   // LOGIN shows login form =====================================================
   app.get('/login', function(req, res) {
@@ -18,9 +21,15 @@ module.exports = function(app, passport){
   // PROCESS login form =========================================================
   app.post('/login', passport.authenticate('local-login', {
       successRedirect : '/profile', // redirect to the secure profile section
-      failureRedirect : '/login', // redirect back to signup page if error
       failureFlash : true // allow flash messages
   }));
+
+  // PROCESS login form for Admin ===============================================
+  app.post('/login', isAdmin, passport.authenticate('local-login', {
+      successRedirect : '/admin', // redirect to the secure profile section
+      failureFlash : true // allow flash messages
+  }));
+/*----------------------------------------------------------------------------*/
 
    // SIGNUP with signup form ===================================================
   app.get('/signup', function(req, res) {
@@ -34,8 +43,9 @@ module.exports = function(app, passport){
           failureRedirect : '/signup', // redirect back to signup page if error
           failureFlash : true // allow flash messages
       }));
+/*----------------------------------------------------------------------------*/
 
-    // ADMIN SECTION ===========================================================
+    // ADMIN SECTION ============================================================
     app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
       res.render('admin.pug', {
         user: req.user
@@ -50,6 +60,7 @@ module.exports = function(app, passport){
       user : req.user // get the user out of session and pass to template
     });
   });
+/*----------------------------------------------------------------------------*/
 
   // LOGOUT =====================================================================
   app.get('/logout', function(req, res) {
@@ -57,8 +68,10 @@ module.exports = function(app, passport){
     res.redirect('/');
   });
 };
+/*----------------------------------------------------------------------------*/
 
-// route middleware to make sure a user is logged in
+// ROUTE MIDDLEWARE METHODS ====================================================
+// make sure a user is logged in
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated())
@@ -67,18 +80,9 @@ function isLoggedIn(req, res, next) {
   res.redirect('/');
 }
 
-// route middleware to make sure is logged in and is an Admin
+// make sure is logged in and is an Admin
 function isAdmin(req, res, next){
-  if(req.isAuthenticated() && local.admin === true)
+  if(req.isAuthenticated() && user.is_admin === true)
   return next();
   res.redirect('/');
 }
-
-//   function isLoggedIn(req, res, next) {
-//     if(req.isAuthenticated())
-//       return next();
-//
-//     res.redirect('/');
-//   }
-// function isAdmin(req, res, next) {
-// app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
