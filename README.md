@@ -187,6 +187,6 @@ and creates all the folders and files as default.
 Dieses Projekt wird unter der MIT-Lizenz lizenziert. Details unter: [LICENCE.md](/doc/LICENCE.md)
 
 ## Anerkennung
-
+* Chris Sevilleja - Scotch.io: [Easy Node Authentication](https://scotch.io/tutorials/easy-node-authentication-setup-and-local)
 * Daniel Shiffman - The Coding Train: [Building an API with Node.js](https://www.youtube.com/watch?v=P-Upi9TMrBk&list=PLRqwX-V7Uu6Yyn-fBtGHfN0_xCtBwUkBp)
 * Traversy Media: [RESTful API From Scratch](https://www.youtube.com/watch?v=eB9Fq9I5ocs)

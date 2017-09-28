@@ -10,7 +10,7 @@ var port            = process.env.PORT || 3000;
 // set up MongoDB
 var mongoose        = require('mongoose');
 var configDB        = require('./config/database.js');
-// set up Auth Modules
+// set up middleware
 var morgan          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
@@ -22,7 +22,11 @@ var path            = require('path');
 var favicon         = require('serve-favicon');
 
 // configuration ===============================================================
-configDB = require('./config/database.js'); // conect to database
+configDB = require('./config/database.js'); // connect to database
+mongoose.connect(configDB.url, { // connect to MongoDB
+  // http://mongoosejs.com/docs/connections.html#use-mongo-client
+  useMongoClient: true
+});
 require('./config/passport.js')(passport); // pass passport for config
 
 // set up Views and Templating Engine ==========================================
@@ -38,21 +42,25 @@ app.use(morgan('dev')); // log request to console
 app.use(cookieParser()); // read cookies. required for auth
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); // location static file
 
 // requirements for passport ===================================================
-app.use(session({ secret: 'webprog' })); // session secret
+app.use(session({
+  secret: 'webprog', // session secret
+  resave: true, // https://github.com/expressjs/session#resave
+  saveUninitialized: true // https://github.com/expressjs/session#saveuninitialized
+}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // stores flash messages in session
 
 // routes ======================================================================
 // load routes and pass in app with fully configured passport
-require('./app/routes/user-routes.js')(app, passport);
+require('./app/routes.js')(app, passport);
 
 // launch ======================================================================
 // app.set('port', port);
 // var server = http.createServer(app);
 // server.listen(port);
 app.listen(port);
-console.log('Server running on port ' + port);
+console.log('Server running on port: ' + port);
