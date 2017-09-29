@@ -4,7 +4,7 @@
 
 // set up modules ==============================================================
 var express         = require('express');
-var app             = express(); 
+var app             = express(); // initiate web app
 var port            = process.env.PORT || 3000;
 
 // set up MongoDB
@@ -30,6 +30,7 @@ mongoose.connect(configDB.url, { // connect to MongoDB
 require('./config/passport.js')(passport); // pass passport for config
 
 // set up Views and Templating Engine ==========================================
+// direct to views folder for the view-teplates, starts with index.pug
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug'); // use pug as templating-engine
 
@@ -39,9 +40,12 @@ app.use(favicon(path.join(__dirname, 'views/public', 'fav-webprog.ico')));
 // set up Express Application ==================================================
 app.use(morgan('dev')); // log request to console
 app.use(cookieParser()); // read cookies. required for auth
-app.use(bodyParser.json()); // get information from html forms
+// parse application/json from body-parser-module
+app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded from body-parser-module (from html forms)
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'views/public'))); // location static file
+// host static files in 'public' folder (css file, fav-icon)
+app.use(express.static(path.join(__dirname, 'views/public')));
 
 // requirements for passport ===================================================
 app.use(session({
@@ -63,3 +67,60 @@ require('./app/routes.js')(app, passport);
 // server.listen(port);
 app.listen(port);
 console.log('Server running on port: ' + port);
+
+
+//
+// app.get('/api/admins', function(req, res){ // set route to get all Admins
+//   Admin.getAdmins(function(err, admins){
+//     if(err){
+//       throw err;
+//     }
+//     res.json(admins);
+//   });
+// });
+//
+//
+// app.get('/api/admins/:_id', function(req, res){ // set route to get single Admin
+//   Admin.getAdminById(req.params._id, function(err, admin){
+//     if(err){
+//       throw err;
+//     }
+//     res.json(admin);
+//   });
+// });
+//
+//
+// app.post('/api/admins', function(req, res){ //set route to add Admin
+//   var admin = req.body; // save form input with body-parser into a admin object
+//   Admin.addAdmin(admin, function(err, admin){
+//     if(err){
+//       throw err;
+//     }
+//     res.json(admin);
+//   });
+// });
+//
+//
+// app.put('/api/admins/:_id', function(req, res){ // set route to update admin
+//   var id = req.params._id;
+//   var admin = req.body;
+//   // options will be left blank {}
+//   Admin.updateAdmin(id, admin, {}, function(err, admin){
+//     if(err){
+//       throw err;
+//     }
+//     res.json(admin);
+//   });
+// });
+//
+//
+// app.delete('/api/admins/:_id', function(req, res){ // route to delete admin
+//   var id = req.params._id;
+//   var admin = req.body;
+//   Admin.removeAdmin(id, function(err, admin){
+//     if(err){
+//       throw err;
+//     }
+//     res.json(admin);
+//   });
+// });
