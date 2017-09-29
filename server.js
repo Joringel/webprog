@@ -34,7 +34,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug'); // use pug as templating-engine
 
 // fav-icon ====================================================================
-app.use(favicon(path.join(__dirname, 'public', 'fav-webprog.ico')));
+app.use(favicon(path.join(__dirname, '/views/public', 'fav-webprog.ico')));
 
 // set up Express Application ==================================================
 app.use(morgan('dev')); // log request to console
