@@ -4,7 +4,7 @@
 
 // set up modules ==============================================================
 var express         = require('express');
-var app             = express();
+var app             = express(); 
 var port            = process.env.PORT || 3000;
 
 // set up MongoDB
@@ -34,14 +34,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug'); // use pug as templating-engine
 
 // fav-icon ====================================================================
-app.use(favicon(path.join(__dirname, '/views/public', 'fav-webprog.ico')));
+app.use(favicon(path.join(__dirname, 'views/public', 'fav-webprog.ico')));
 
 // set up Express Application ==================================================
 app.use(morgan('dev')); // log request to console
 app.use(cookieParser()); // read cookies. required for auth
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public'))); // location static file
+app.use(express.static(path.join(__dirname, 'views/public'))); // location static file
 
 // requirements for passport ===================================================
 app.use(session({
