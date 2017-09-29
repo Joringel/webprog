@@ -5,30 +5,42 @@
 // set up modules ==============================================================
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
+// module used to count the all users in the collection for employeenumber
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose.connection);
 
 // SCHEMA for user Model =======================================================
 var userSchema = mongoose.Schema({
-        email: {
-          type: String,
-          required: true
-        },
-        password: {
-          type: String,
-          required: true
-        },
-        is_admin: {
-          type: Boolean,
-          default: false
-        },
-        create_date:{
-          type: Date,
-          default: Date.nows
-        }
-  });
-
-// create model for users and expose to app
-var User = module.exports = mongoose.model('User', userSchema);
-
+    email: {
+        type: String,
+        lowercase: true
+    },
+    password: String,
+    plainpassword: String,
+    username: String,
+    name: {
+        firstname: String,
+        lastname: String
+    },
+    location: {
+        street: String,
+        postcode: {
+            type: String,
+            minlength: 5,
+            maxlength: 5
+         }
+    },
+    employeenumber: Number,
+    departmentnumber: Number,
+    is_admin: {
+        type: Number,
+        default: 0
+    }
+}).plugin(autoIncrement.plugin, {
+        model: 'User',
+        startAt: 1,
+        field: 'employeenumber'
+});
 
 // METHODS =====================================================================
 // generating hash
@@ -41,6 +53,8 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
+// create model for users and expose to app
+module.exports = mongoose.model('User', userSchema);
 
 
 //

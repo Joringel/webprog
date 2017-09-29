@@ -6,7 +6,7 @@ block content
       h1 #[span.fa.fa-anchor] Admin Page
       a.btn.btn-default.btn-sm(href='/logout') logout
     .row
-      // LOCATION INFORMATION
+      //- LOCATION INFORMATION
       .col-sm-6
         .card
           .card-block
@@ -23,4 +23,22 @@ block content
                 strong password
                 | : #{user.password}
                 br
+                strong Admin
+                | : #{user.is_admin}
+                br
             
+
+                  //- 
+                  //- 
+                  //- <% if (users.length > 0) {
+                  //-                       for (var i=0; i<users.length; i++) { %>
+                  //-                         <tr>
+                  //-                           <td><%= users[i].mitarbeiternmr %></td>
+                  //-                           <td><%= users[i].username %></td>
+                  //-                           <td><%= users[i].name %></td>
+                  //-                           <td><%= users[i].lastname %></td>
+                  //-                           <td><a href="/admin/<%= users[i]._id %>/profile"><i class="material-icons">person</i></a></td>
+                  //-                           <td><a href="/admin/edit/<%= users[i]._id %>"><i class="material-icons">mode_edit</i></a></td>
+                  //-                           <td><a href="/admin/delete/<%= users[i]._id %>"><i class="material-icons">clear</i></a></td>
+                  //-                         </tr>
+                  //-                     <% }} %>

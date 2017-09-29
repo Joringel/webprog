@@ -6,7 +6,7 @@ block content
       h1 #[span.fa.fa-anchor] Profile Page
       a.btn.btn-default.btn-sm(href='/logout') logout
     .row
-      // LOCATION INFORMATION
+      //- LOCATION INFORMATION
       .col-sm-6
         .card
           .card-block
@@ -18,9 +18,63 @@ block content
                 | : #{user._id}
                 br
                 strong email
-                | : #{user.local.email}
+                | : #{user.email}
                 br
-                strong password
-                | : #{user.local.password}
+                strong Benutzername
+                | : #{user.username}
                 br
+                strong Passwort (Klartext)
+                | : #{user.plainpassword}
+                br
+                strong Vorname
+                | : #{user.name.firstname}
+                br
+                strong Nachname
+                | : #{user.name.lastname}
+                br
+                strong Straßenname
+                | : #{user.location.street}
+                br
+                strong Postleitzahl
+                | : #{user.location.postcode}
+                br
+                if user.is_admin == true
+                  strong Sie Sind Admin
+
+              form(method='post')
+                .form-group
+                  label Benutzername Neusetzen
+                  input.form-control(type='text', name='username')
+                .form-group
+                  label Passwort Neusetzen
+                  input.form-control(type='password', name='password')
             
+                button.btn.btn-warning.btn-lg(type='submit') Submit
+                
+
+              form(action="/project/create" method='post')
+                .form-group
+                  label Projektname
+                  input.form-control(type='text', name='projectname')
+                .form-group
+                  label Projekttext
+                  textarea.form-control(type='text', name='projecttext')
+            
+                button.btn.btn-warning.btn-lg(type='submit') Projekt erstellen
+                
+              //-   
+              //-   .form-group
+              //-     label Wähle eine Projekt
+              //-     select.form-control(id="department-select", name="department")
+              //-       if department.length > 0 
+              //-         - for(var i = 0; i < department.length; i++) {
+              //-             option(value= department[i].number)= department[i].name
+              //-         - }
+              //-       else
+              //-         option(value="-1") Es ist bisher keine Abteilung vorhanden
+              //-         
+              //-   button.btn.btn-warning.btn-lg(type='submit') Submit
+              //- hr
+              //- p Already have an account? #[a(href='/login') Login]
+              //- p Or go #[a(href='/') home] .
+              //- 

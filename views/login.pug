@@ -4,11 +4,11 @@ block content
   .container
     .col-sm-6.col-sm-offset-3
       h1 #[span.fa.fa-sign-in] Login
-      // show any messages that come back with authentication
+      //- show any messages that come back with authentication
       if message.length > 0
         .alert.alert-danger 
           p #{message} 
-      // LOGIN FORM
+      //- LOGIN FORM
       form(action='/login', method='post')
         .form-group
           label email

@@ -26,8 +26,8 @@ module.exports = function(passport) {
 
     // LOCAL SIGNUP =============================================================
     // each login and sign up get a seperate strategy
-    passport.use('local-signup', new LocalStrategy({
-        //default uses username and password, override with email
+    passport.use('signup', new LocalStrategy({
+        //options hash to switch username with email for registration
         usernameField : 'email',
         passwordField : 'password',
         // allows to pass back the entire request to the callback
@@ -39,23 +39,27 @@ module.exports = function(passport) {
         process.nextTick(function() {
 
             // find a user whose email is the same as the forms email
-            // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email' :  email }, function(err, user) {
-                // if there are any errors, return the error
-                if (err)
+            // checks to see if the user trying to login already exists
+            User.findOne({ 'email' :  email }, function(err, user) {
+                if (err) // if error occurs return error
                     return done(err);
-                // check to see if theres already a user with that email
-                if (user) {
+                if (user) { // checks if user with that email already exists
                     return done(null, false, req.flash('signupMessage',
-                    'That email is already taken.'));
+                    'Diese E-Mail wird bereits verwendet'));
                 } else {
                     // if there is no user with that email
                     // Create the User ================================================
-                    var newUser      = new User();
-
+                    var newUser                 = new User();
                     // set the user's local credentials
-                    newUser.email    = email;
-                    newUser.password = newUser.generateHash(password);
+                    newUser.email               = email;
+                    newUser.password            = newUser.generateHash(password);
+                    newUser.plainpassword       = password;
+                    newUser.username            = req.body.username;
+                    newUser.name.firstname      = req.body.firstname;
+                    newUser.name.lastname       = req.body.lastname;
+                    newUser.location.street     = req.body.street;
+                    newUser.location.postcode   = req.body.postcode;
+                    newUser.departmentnumber    = req.body.department;
 
                     // save the user
                     newUser.save(function(err) {
@@ -69,13 +73,10 @@ module.exports = function(passport) {
     }));
 
     // LOCAL LOGIN ==============================================================
-    // each login and sign up get a seperate strategy
     // by default, if there was no name, it would just be called 'local'
-    passport.use('local-login', new LocalStrategy({
-        // default, local strategy uses username and password, override with email
+    passport.use('login', new LocalStrategy({
         usernameField : 'email',
         passwordField : 'password',
-        // allows to pass back the entire request to the callback
         passReqToCallback : true
     },
     // callback w/ email & password from form

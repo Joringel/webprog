@@ -4,11 +4,11 @@ block content
   .container
     .col-sm-6.col-sm-offset-3
       h1 #[span.fa.fa-sign-in] Signup
-      // show any messages that come back with authentication
+      //- show any messages that come back with authentication
       if message.length > 0 
         .alert.alert-danger
           p #{message}
-      // LOGIN FORM
+      //- LOGIN FORM
       form(action='/signup', method='post')
         .form-group
           label Email
@@ -16,7 +16,40 @@ block content
         .form-group
           label password
           input.form-control(type='password', name='password')
+        .form-group
+          label username
+          input.form-control(type='text', name='username')
+        .form-group
+          label Vorname
+          input.form-control(type='text', name='firstname')
+        .form-group
+          label Nachname
+          input.form-control(type='text', name='lastname')  
+        .form-group
+          label Straßenname, Hausnummer
+          input.form-control(type='text', name='street')
+        .form-group
+          label Postleitzahl
+          input.form-control(type='number', name='postcode')
+        .form-group
+          label Wähle eine Abteilung
+          select.form-control(id="department-select", name="department")
+            if department.length > 0 
+              - for(var i = 0; i < department.length; i++) {
+                  option(value= department[i].number)= department[i].name
+              - }
+            else
+              option(value="-1") Es ist bisher keine Abteilung vorhanden
+              
         button.btn.btn-warning.btn-lg(type='submit') Submit
       hr
       p Already have an account? #[a(href='/login') Login]
       p Or go #[a(href='/') home] .
+      
+
+
+              
+              //- //- var departments[];
+              //- ul
+              //-   each val in department.length ? values : ['There are no values']
+              //-     li= val

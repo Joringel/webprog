@@ -46,8 +46,8 @@ app.use(express.static(path.join(__dirname, 'public'))); // location static file
 // requirements for passport ===================================================
 app.use(session({
   secret: 'webprog', // session secret
-  resave: true, // https://github.com/expressjs/session#resave
-  saveUninitialized: true // https://github.com/expressjs/session#saveuninitialized
+  resave: false, // https://github.com/expressjs/session#resave
+  saveUninitialized: false // https://github.com/expressjs/session#saveuninitialized
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
