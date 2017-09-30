@@ -5,20 +5,20 @@
 // set up modules ==============================================================
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-// module used to count the all users in the collection for employeenumber
+// module used to count the all users in the collection for departmentnumber
 var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose.connection);
 
 // SCHEMA for user Model =======================================================
 var departmentSchema = mongoose.Schema({
-    name: String,
-    number: Number
+    departmentname: String,
+    departmentnumber: Number
 
 // first department starts w/ number 1
 }).plugin(autoIncrement.plugin, {
         model: 'department',
         startAt: 1,
-        field: 'number'
+        field: 'departmentnumber'
 });
 
 // create model for department and expose to app

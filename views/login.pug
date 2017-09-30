@@ -2,21 +2,22 @@ extends layout
 
 block content
   .container
-    .col-sm-6.col-sm-offset-3
-      h1 #[span.fa.fa-sign-in] Login
-      //- show any messages that come back with authentication
-      if message.length > 0
-        .alert.alert-danger 
-          p #{message} 
-      //- LOGIN FORM
-      form(action='/login', method='post')
-        .form-group
-          label email
-          input.form-control(type='text', name='email')
-        .form-group
-          label Password
-          input.form-control(type='password', name='password')
-        button.btn.btn-warning.btn-lg(type='submit') Login
-      hr
-      p Need an account? #[a(href='/signup') Signup]
-      p Or go #[a(href='/') Home] .
+    .row
+      .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3.col-xl-4.col-xl-offset-4.p-5.login-card
+        h1.mb-4 #[span.fa.fa-users] Anmeldung
+        //- show any messages that come back with authentication
+        if message.length > 0
+          .alert.alert-danger 
+            p #{message} 
+        //- LOGIN FORM
+        form(action='/login', method='post')
+          .form-group
+            label Email
+            input.form-control(type='text', name='email')
+          .form-group
+            label Passwort
+            input.form-control(type='password', name='password')
+          button.btn.btn-primary.btn-lg.my-2(type='submit') anmelden
+        hr
+        small.d-block Neuen Account anlegen? #[a(href='/signup') Signup]
+        small.d-block Zurück zur  #[a(href='/') Startseite]

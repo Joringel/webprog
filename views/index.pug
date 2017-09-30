@@ -2,14 +2,14 @@ extends layout
 
 block content
   .container
-    .jumbotron.text-center
-      h1
-        span.fa.fa-lock
-        | Node Auth
-      p Login or Register with:
-      a.btn.btn-default(href="/login")
-        span.fa.fa-user
-        | Local Login
-      a.btn.btn-default(href="/signup")
-        span.fa.fa-user
-        | Local Signup
+    .row
+      .col.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3.index-card.text-center.p-5
+        h1.display-3
+          | Webprog Login
+        p.pt-4 Melde dich an oder registriere dich neu:
+        a.btn.btn-default(href="/login")
+          span.fa.fa-user(style={'padding-right': '8px'})
+          | Zum Login
+        a.btn.btn-default(href="/signup")
+          span.fa.fa-user(style={'padding-right': '8px'})
+          | Zur Registration

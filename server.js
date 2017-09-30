@@ -5,7 +5,7 @@
 // set up modules ==============================================================
 var express         = require('express');
 var app             = express(); // initiate web app
-var port            = process.env.PORT || 3001;
+var port            = process.env.PORT || 3000;
 
 // set up MongoDB
 var mongoose        = require('mongoose');
@@ -40,6 +40,7 @@ app.use(favicon(path.join(__dirname, 'views/public', 'fav-webprog.ico')));
 // set up Express Application ==================================================
 app.use(morgan('dev')); // log request to console
 app.use(cookieParser()); // read cookies. required for auth
+app.use(bodyParser());
 // parse application/json from body-parser-module
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded from body-parser-module (from html forms)
