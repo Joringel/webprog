@@ -37,10 +37,13 @@ block content
           strong Postleitzahl
           | : #{user.location.postcode}
           br
+          strong Abteilung
+          | : #{departmentname}
+          br
           if user.is_admin == true
             a.btn.btn-primary.btn-sm.my-3(href='/admin') Zum Admin Panel
-              
-      .col-sm-8
+    .row.d-flex.align-items-start   
+      .col-sm-6
         .user-card
           form.p-3(method='post')
             .row
@@ -54,8 +57,7 @@ block content
                   input.form-control(type='password', name='password')
               .col-12
                 button.btn.btn-warning.btn-lg.my-3(type='submit') aktualisieren
-    .row.mt-5
-      .col-sm-6.d-flex.mt-5.flex-column
+      .col-sm-6.d-flex.flex-column
         .project-card
           form.p-3(action="/project/create" method='post')
             .form-group
@@ -65,32 +67,27 @@ block content
               label Projekttext
               textarea.form-control(type='text', name='projecttext')
         
-            button.btn.btn-warning.btn-lg.my-3(type='submit') Projekt erstellen
-            button.btn.btn-primary.btn-lg.m-3(type='submit') Projekte ansehen
-                  
-                  
-                  
-                  
-      .row.d-flex.align-items-center
-        .col-12  
-          .card-body
-            .table-responsive
-              table.table.table-bordered(width='100%', cellspacing='0')
-                thead
-                  tr
-                    th Projektname
-                    th Projekttext
-                    th Projekbesitzer
-                    th Editieren
-                tbody
-                  if project.length > 0
-                    - for(var i = 0; i < project.length; i++) {
-                        tr
-                          td #{project[i].projectname}
-                          td #{project[i].projecttext}
-                          td #{project[i].projectowner}
-                          td 
-                            a(href='/profile/project/' + project[i]._id + '/delete') 
-                              span.fa.fa-trash-o
-                    - }
+            button.btn.btn-warning.btn-lg.my-3(type='submit') Projekt erstellen              
+    .row.mt-5
+      .col-12  
+        .card-body
+          .table-responsive
+            table.table.table-bordered(width='100%', cellspacing='0')
+              thead
+                tr
+                  th Projektname
+                  th Projekttext
+                  th Projekbesitzer
+                  th Editieren
+              tbody
+                if project.length > 0
+                  - for(var i = 0; i < project.length; i++) {
+                      tr
+                        td #{project[i].projectname}
+                        td #{project[i].projecttext}
+                        td #{project[i].projectowner}
+                        td 
+                          a(href='/profile/project/' + project[i]._id + '/delete') 
+                            span.fa.fa-trash-o
+                  - }
             

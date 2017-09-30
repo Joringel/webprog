@@ -24,11 +24,7 @@ var userSchema = mongoose.Schema({
     },
     location: {
         street: String,
-        postcode: {
-            type: String,
-            minlength: 5,
-            maxlength: 5
-         }
+        postcode: String
     },
     employeenumber: Number,
     departmentnumber: Number,

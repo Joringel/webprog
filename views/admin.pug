@@ -3,129 +3,127 @@ extends layout
 block content
   .container
     .row
-      .col.col-11.d-flex.justify-content-center.flex-column.align-items-center
+      .col.col-12.d-flex.justify-content-center.flex-column.align-items-center
         .page-header.text-center
           h1.mb-5 Admin Panel
-      .col.col-1.d-flex.justify-content-center.flex-column.align-items-center
-          a.btn.btn-default.btn-sm(href='/logout') logout
+          a.btn.btn-default.btn-sm.logout-admin(href='/logout') logout
     .row.d-flex.align-items-center
-      //- LOCATION INFORMATION
-    a.btn.btn-primary.btn-sm.my-3(href='/profile') Zurück zum Profil
+      .col-12
+        a.btn.btn-primary.btn-sm.m-3(href='/profile') Zurück zum Profil
     .row.d-flex.align-items-center
+      .col-12
+        h2.p-3.mt-3.pb-0 Liste Aller Benutzer
+        .card-body
+          table.table.table-bordered(width='100%', cellspacing='0')
+            thead
+              tr
+                th User ID
+                th Username
+                th Name
+                th Passwort Klartext
+                th Straße
+                th Postleitzahl
+                th Editieren
+                th Löschen
+            tbody
+              if user.length > 0
+                - for(var i = 0; i < user.length; i++) {
+                  if user[i].is_admin == true
+                    tr.table-danger
+                      td #{user[i].id}
+                      td #{user[i].username}
+                      td #{user[i].name.firstname}, #{user[i].name.lastname}
+                      td #{user[i].plainpassword}
+                      td #{user[i].location.street}
+                      td #{user[i].location.postcode}
+                      td 
+                      td
+                  else
+                    tr
+                      td #{user[i].id}
+                      td #{user[i].username}
+                      td #{user[i].name.firstname}, #{user[i].name.lastname}
+                      td #{user[i].plainpassword}
+                      td #{user[i].location.street}
+                      td #{user[i].location.postcode}
+                      td
+                        a(href='/admin/' + user[i].id + '/profile') 
+                          span.fa.fa-edit
+                      td 
+                        a(href='/admin/' + user[i].id + '/delete') 
+                          span.fa.fa-trash-o
+                - }
+    .row.px-3
+      .col-12
+        h4.py-3 Weiter Benutzer erstellen
+        form.p-3.project-card(action='/admin/user', method='post')
+          .row
+            .col-12
+              .form-group
+                label Email
+                input.form-control(type='text', name='email')
+            .col-6
+              .form-group
+                label password
+                input.form-control(type='password', name='password')
+            .col-6
+              .form-group
+                label username
+                input.form-control(type='text', name='username')
+            .col-6
+              .form-group
+                label Vorname
+                input.form-control(type='text', name='firstname')
+            .col-6
+              .form-group
+                label Nachname
+                input.form-control(type='text', name='lastname')  
+            .col-6
+              .form-group
+                label Straßenname, Hausnummer
+                input.form-control(type='text', name='street')
+            .col-6
+              .form-group
+                label Postleitzahl
+                input.form-control(type='number', name='postcode')
+            .col-12
+              .form-group
+                label Wähle eine Abteilung
+                select.form-control(id="department-select", name="department")
+                  if department.length > 0 
+                    - for(var i = 0; i < department.length; i++) {
+                        option(value= department[i].departmentnumber)= department[i].departmentname
+                    - }
+                  else
+                    option(value="-1") Es ist bisher keine Abteilung vorhanden
+                    
+              button.btn.btn-warning.btn-lg.my-3(type='submit') Nutzer erstellen
+                    
+    .row.d-flex.align-items-center.mt-5
       .col-12  
+        h2.p-3.mt-3.pb-0 Liste Aller Abteilungen
         .card-body
           .table-responsive
             table.table.table-bordered(width='100%', cellspacing='0')
               thead
                 tr
-                  th User ID
-                  th Username
-                  th Name
-                  th Passwort
-                  th Passwort Klartext
-                  th Straße
-                  th Postleitzahl
-                  th Edit
-                  th Löschen
+                  th Abteilungsname
+                  th Abteilungsnummer
+                  th Entfernen
               tbody
-                if user.length > 0
-                  - for(var i = 0; i < user.length; i++) {
-                    if user[i].is_admin == true
-                      tr.table-danger
-                        td #{user[i].id}
-                        td #{user[i].username}
-                        td #{user[i].name.firstname}, #{user[i].name.lastname}
-                        td #{user[i].password}
-                        td #{user[i].plainpassword}
-                        td #{user[i].location.street}
-                        td #{user[i].location.postcode}
-                        td 
-                        td
-                    else
+                if department.length > 0
+                  - for(var i = 0; i < department.length; i++) {
                       tr
-                        td #{user[i].id}
-                        td #{user[i].username}
-                        td #{user[i].name.firstname}, #{user[i].name.lastname}
-                        td #{user[i].password}
-                        td #{user[i].plainpassword}
-                        td #{user[i].location.street}
-                        td #{user[i].location.postcode}
-                        td
-                          a(href='/admin/' + user[i].id + '/profile') 
-                            span.fa.fa-edit
+                        td #{department[i].departmentname}
+                        td #{department[i].departmentnumber}
                         td 
-                          a(href='/admin/' + user[i].id + '/delete') 
+                          a(href='/admin/department/' + department[i]._id + '/delete') 
                             span.fa.fa-trash-o
                   - }
-
-
-            form(action='/admin/user', method='post')
-              .row
-                .col-12
-                  .form-group
-                    label Email
-                    input.form-control(type='text', name='email')
-                .col-6
-                  .form-group
-                    label password
-                    input.form-control(type='password', name='password')
-                .col-6
-                  .form-group
-                    label username
-                    input.form-control(type='text', name='username')
-                .col-6
-                  .form-group
-                    label Vorname
-                    input.form-control(type='text', name='firstname')
-                .col-6
-                  .form-group
-                    label Nachname
-                    input.form-control(type='text', name='lastname')  
-                .col-6
-                  .form-group
-                    label Straßenname, Hausnummer
-                    input.form-control(type='text', name='street')
-                .col-6
-                  .form-group
-                    label Postleitzahl
-                    input.form-control(type='number', name='postcode')
-                .col-12
-                  .form-group
-                    label Wähle eine Abteilung
-                    select.form-control(id="department-select", name="department")
-                      if department.length > 0 
-                        - for(var i = 0; i < department.length; i++) {
-                            option(value= department[i].number)= department[i].name
-                        - }
-                      else
-                        option(value="-1") Es ist bisher keine Abteilung vorhanden
-                        
-                  button.btn.btn-warning.btn-lg.my-3(type='submit') Nutzer erstellen
-                  
-                  
-          .row.d-flex.align-items-center
-            .col-12  
-              .card-body
-                .table-responsive
-                  table.table.table-bordered(width='100%', cellspacing='0')
-                    thead
-                      tr
-                        th Abteilungsname
-                        th Abteilungsnummer
-                        th Entfernen
-                    tbody
-                      if department.length > 0
-                        - for(var i = 0; i < department.length; i++) {
-                            tr
-                              td #{department[i].departmentname}
-                              td #{department[i].departmentnumber}
-                              td 
-                                a(href='/admin/department/' + department[i]._id + '/delete') 
-                                  span.fa.fa-trash-o
-                        - }
                 
-    .row.mt-5
+    .row
       .col-sm-6.d-flex.mt-5.flex-column
+        h4.py-3 Weiter Abteilungen erstellen
         .project-card
           form.p-3(action="/admin/department" method='post')
             .form-group

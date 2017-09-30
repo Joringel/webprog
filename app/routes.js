@@ -90,9 +90,11 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
     newDepartment.save(function(err) {
     if(err)
       throw err;
+    else {
+      res.redirect('/admin');
+    }
     });
     }
-    res.redirect('/admin');
   });
 
    // Delete Department as Admin=================================================
@@ -108,7 +110,7 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
   // ADMIN SECTION ============================================================
   app.post('/admin/user', isLoggedIn, isAdmin, function (req, res) {
 
-    User.findOne({ 'email' :  email }, function(err, user) {
+    User.findOne({ 'email' :  req.body.email }, function(err, user) {
         if (err) // if error occurs return error
             res.redirect('/admin');
         if (user) { // checks if user with that email already exists
@@ -117,10 +119,10 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
             // if there is no user with that email
             // Create the User ================================================
             var newUser                 = new User();
-            // set the user's local credentials
-            newUser.email               = email;
-            newUser.password            = newUser.generateHash(password);
-            newUser.plainpassword       = password;
+            // set the user's credentials
+            newUser.email               = req.body.email;
+            newUser.password            = newUser.generateHash(req.body.password);
+            newUser.plainpassword       = req.body.password;
             newUser.username            = req.body.username;
             newUser.name.firstname      = req.body.firstname;
             newUser.name.lastname       = req.body.lastname;
@@ -132,7 +134,7 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
             newUser.save(function(err) {
                 if (err)
                     throw err;
-                return done(null, newUser);
+               res.redirect('/admin');
             });
         }
     });
@@ -142,6 +144,14 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
 
     // ADMIN SECTION ============================================================
     app.get('/admin/:user_id/profile', isLoggedIn, isAdmin, function (req, res) {
+      Department.findOne({departmentnumber: req.user.departmentnumber}, function(err, department){
+        if (err)
+        res.redirect('/profile');
+        var departmentname = '';
+        if (department)
+        departmentname = department.departmentname;
+
+
       Project.find({}, function(err, project){ // search for all departments
         if (err)
           res.redirect('/');
@@ -154,6 +164,7 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
           res.send(err);
         if(user)
         res.render('profile.pug', {
+          departmentname: departmentname,
           user: user, // set user by requested user_id
           project: proj
         });
@@ -161,7 +172,30 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
           res.redirect('/admin');
       });
     });
+    });
 });
+
+
+// ADMIN SECTION ============================================================
+app.post('/admin/:user_id/profile', isLoggedIn, isAdmin, function (req, res) {
+  User.findById(req.params.user_id, function (err, user){
+    if (err)
+      redirect('/admin');
+    if (user){
+      console.log(user);
+      if(req.body.username) { user.username = req.body.username; }
+      if(req.body.password) { user.password = user.generateHash(req.body.password);
+                                          user.plainpassword = req.body.password;}
+      user.save(function(err) {
+      if(err) {res.send(err)}
+        else {
+          res.redirect('/admin'); // page reload when new password saved
+        }
+      });
+    }
+  });
+});
+
 
 
     // ADMIN SECTION ============================================================
@@ -178,6 +212,15 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
    // protected and only visible when logged in
    // use route middleware to verify this (isLoggedIn function)
   app.get('/profile', isLoggedIn, function(req, res) {
+
+    Department.findOne({departmentnumber: req.user.departmentnumber}, function(err, department){
+      if (err)
+      res.redirect('/profile');
+      var departmentname = '';
+      if (department)
+      departmentname = department.departmentname;
+
+
     Project.find({}, function(err, project){ // search for all departments
       if (err)
         res.redirect('/');
@@ -186,10 +229,12 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
         proj = project; // departments werden in dept gespeichert
 
     res.render('profile.pug', {
+      departmentname: departmentname, // get the department out of session and pass to template
       user: req.user, // get the user out of session and pass to template
       project: proj // get the user out of session and pass to template
     });
   });
+    });
 });
 
   app.post('/profile', isLoggedIn, function(req, res) {
@@ -202,7 +247,7 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
       else {
         res.redirect('/profile'); // page reload when new password saved
       }
-    })
+    });
   });
 
   app.post('/project/create', isLoggedIn, function(req, res) {
@@ -216,9 +261,10 @@ app.get('/admin', isLoggedIn, isAdmin, function (req, res) {
     newProject.save(function(err) {
     if(err)
       throw err;
+    else
+      res.redirect('/profile');
     });
-    }
-    res.redirect('/profile');
+  }
   });
 
 
