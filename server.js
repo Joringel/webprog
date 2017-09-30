@@ -5,7 +5,7 @@
 // set up modules ==============================================================
 var express         = require('express');
 var app             = express(); // initiate web app
-var port            = process.env.PORT || 3000;
+var port            = process.env.PORT || 3001;
 
 // set up MongoDB
 var mongoose        = require('mongoose');
@@ -67,60 +67,3 @@ require('./app/routes.js')(app, passport);
 // server.listen(port);
 app.listen(port);
 console.log('Server running on port: ' + port);
-
-
-//
-// app.get('/api/admins', function(req, res){ // set route to get all Admins
-//   Admin.getAdmins(function(err, admins){
-//     if(err){
-//       throw err;
-//     }
-//     res.json(admins);
-//   });
-// });
-//
-//
-// app.get('/api/admins/:_id', function(req, res){ // set route to get single Admin
-//   Admin.getAdminById(req.params._id, function(err, admin){
-//     if(err){
-//       throw err;
-//     }
-//     res.json(admin);
-//   });
-// });
-//
-//
-// app.post('/api/admins', function(req, res){ //set route to add Admin
-//   var admin = req.body; // save form input with body-parser into a admin object
-//   Admin.addAdmin(admin, function(err, admin){
-//     if(err){
-//       throw err;
-//     }
-//     res.json(admin);
-//   });
-// });
-//
-//
-// app.put('/api/admins/:_id', function(req, res){ // set route to update admin
-//   var id = req.params._id;
-//   var admin = req.body;
-//   // options will be left blank {}
-//   Admin.updateAdmin(id, admin, {}, function(err, admin){
-//     if(err){
-//       throw err;
-//     }
-//     res.json(admin);
-//   });
-// });
-//
-//
-// app.delete('/api/admins/:_id', function(req, res){ // route to delete admin
-//   var id = req.params._id;
-//   var admin = req.body;
-//   Admin.removeAdmin(id, function(err, admin){
-//     if(err){
-//       throw err;
-//     }
-//     res.json(admin);
-//   });
-// });
