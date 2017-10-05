@@ -5,7 +5,7 @@
 ###### Abgabedatum: 30.09.2017
 ###### Code: [github.com/Joringel/webprog](https://github.com/Joringel/webprog)
 ###### Lizenz: Dieses Projekt wird unter der MIT-Lizenz lizenziert. Details unter [doc/LICENCE.md](/doc/LICENCE.md)
-<br>
+
 Die Abgabe ist im Rahmen des Fachs: *Webprogrammierung* an der [Hochschule Harz](https://www.hs-harz.de/studium/fb-automatisierung-und-informatik/medieninformatik/) entstanden und zeigt die Bearbeitung der geforderten Aufgabenstellung im Zuge der Prüfungsleistung als Hausarbeit.
 Der Code ist im [Git-Repository](https://github.com/Joringel/webprog) einsehbar.
 ## [#](#aufgabenstellung) Aufgabenstellung
@@ -19,15 +19,15 @@ Es soll eine Datenbank-Server-Applikation für Projektmanagement erstellt werden
 ### [#](programmanforderungen) Programmanforderungen
 Es sollen sich Benutzer sowohl als normale *User* als auch als *Admin* mittels Benutzername und Passwort anmelden können. Neue User können sich mit den geforderten Daten registrieren. Ein bereits registrierter User kann zu einem Admin *ernannt*( Siehe Kapitel: Admin-Ernennung) werden. Folgende Operationen können nach erfolgreicher Anmeldung ausgeführt werden:      
 
-- User
-	- Benutzername ändern
-	- Passwort ändern
-	- Projekt anlegen
-	- Projekt editieren   
+* User
+	* Benutzername ändern
+	* Passwort ändern
+	* Projekt anlegen
+	* Projekt editieren   
 <br>
-- Admin (zusätzliche Operationen)
-	- Benutzer löschen
-	- Benutzerpasswort ändern
+*	Admin (zusätzliche Operationen)
+	* Benutzer löschen
+	* Benutzerpasswort ändern
 
 ### [#](datenbankschemata) Datenbank Schemata:
 In der Datenbank müssen die Collections für *Mitarbeiter(Users)*, *Abteilungen(Departments)* und *Projekte(Projects)* erstellt werden. Der **Pindex** ist hierbei die durch Mongoose automatisch generierte ObjectID: *_id*, die beim erstellen des jeweiligen Objekts in der Datenbank gespeichert wird. Ein Projekt bekommt den Eintrag *projectowner* in der **Pindex** des Users gespeichert, welcher das Projekt erstellt hat, wodurch eine weitere Collection für Projekt-Mitarbeiter entfällt.
