@@ -240,9 +240,9 @@ Das Module served das Favicon seperat.
 Nodemon wird lediglich während der Entwicklung verwendet und dient als Monitor für den Server. Dieser wird bei Änderungen am Backend aktualisiert und muss somit nicht erneut von hand gestartet werden was den Arbeitsfluss deutlich verbessert.
 
 ### Signup
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/00_index.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/01_signup.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/02_loggedin.png)
+![](doc/images/00_index.png)
+![](doc/images/01_signup.png)
+![](doc/images/02_loggedin.png)
 ### [#](adminernennung) Admin-Ernennung
 In Robo 3T kann die Datenbank visualisiert werden. Geht man auf die Collection der User kann das Objekt eines Users angepasst werden. Ändert man den Eintrag *is_admin* auf **1** besitzt der Benutzer im weiteren Verlauf Adminrechte.
 Dies kann auch über die Mongo Shell im Terminal geschehen. 
@@ -279,31 +279,17 @@ $ db.users.update(
 ```   
 Siehe auch die [MongoDB Doku](https://docs.mongodb.com/getting-started/shell/update/).
 
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/03_adminrobo.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/04_isadmin.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/05_adminpanel.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/06_createdepartment.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/07_admincreateuser.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/08_createduser.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/09_loginuser.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/10_edituser.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/11_editeduser.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/12_createproject.png)
-![](/Applications/XAMPP/xamppfiles/htdocs/webprog/doc/images/13_projectcreated.png)
-
-
-
-* lorem
-
-### Datenbank-ER-Modell
-* lorem
-
-### Design-Entscheidungen
-* lorem
-
-### Anleitung zum Deployment
-* lorem
-
+![](doc/images/03_adminrobo.png)
+![](doc/images/04_isadmin.png)
+![](doc/images/05_adminpanel.png)
+![](doc/images/06_createdepartment.png)
+![](doc/images/07_admincreateuser.png)
+![](doc/images/08_createduser.png)
+![](doc/images/09_loginuser.png)
+![](doc/images/10_edituser.png)
+![](doc/images/11_editeduser.png)
+![](doc/images/12_createproject.png)
+![](doc/images/13_projectcreated.png)
 
 
 ## [#](anerkennung) Anerkennung
